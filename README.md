@@ -36,34 +36,35 @@ Attention mechanism is used to compute weights vector that can be used to identi
  
 gist of the image. The following is the calculation involved in computation, it is as per Bahdanau attention/local attention mechanism
 
-ht = f(xt)	f = Linear function,	xt = Feature vector obtained from Encoder CNN	(1)
+*ht = f(xt)	f = Linear function,	xt = Feature vector obtained from Encoder CNN	(1)*
 
 Next step is using the Decoder LSTM hidden states, we get the internal states corresponding to the hidden states of LSTM.
 
-hs′=f(ht−1) ht−1=Previous Hidden state obtained from Decoder LSTM	(2)
+*hs′=f(ht−1) ht−1=Previous Hidden state obtained from Decoder LSTM	(2)*
 
 Using ht and hs′ we calculate the attention scores i.e. s1, s2, s3, .. sn. The model will learn to relevant encoder states by generating a high score for the states for which attention is to be paid while low score for the states which are to be ignored.
 
-score = f(relu(ht,hs′)) f = Linear function	(3)
+*score = f(relu(ht,hs′)) f = Linear function	(3)*
 
 Upon identifying the scores for images, we use a softmax activation function and calculate the probabilities for these scores i.e. the attention weights e1, e2, e3,..,en.
 
-e = {e1, e2, e3,..,en} and 0 ≤ e ≤ 1
+*e = {e1, e2, e3,..,en} and 0 ≤ e ≤ 1*
 
-αts=exp(score)Σexp(score) Soft max Activation function is used	(4)
+*αts=exp(score)Σexp(score) Soft max Activation function is used	(4)*
 
 Using these attention scores, we calculate the context vector which will be used by the decoder in order to predict the next word in the sequence.
 
-Cv= Σαtsshs′ Cv=Context Vector	(5)
+*Cv= Σαtsshs′ Cv=Context Vector	(5)*
 
-St = RNN(St-1, [e(yt-1),Cv]), RNN could be LSTM/GRU where, e(yt-1) is the previous word prediction 
+*St = RNN(St-1, [e(yt-1),Cv]), RNN could be LSTM/GRU where, e(yt-1) is the previous word prediction *
 
 **Decoder:**
 A GRU/LSTM which has different time steps, helping to generate sequence of outputs. This sequence helps in building natural sentences, that could be a translated version of the sentence from the other language or description of an image.
 
 ## ARCHITECTURE
 
-![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
+![GitHub Logo](![GitHub Logo](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Images/Picture1.jpg)
+
 
 ## CODE
 
