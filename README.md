@@ -63,7 +63,7 @@ A GRU/LSTM which has different time steps, helping to generate sequence of outpu
 
 ## ARCHITECTURE
 
-![GitHub Logo](![GitHub Logo](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Images/Picture1.jpg)
+![GitHub Logo](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Images/Picture1.jpg)
 
 
 ## CODE
