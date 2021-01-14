@@ -4,10 +4,11 @@ We build an encoder - decoder model for captioning an image with visual attentio
 ### TABLE OF CONTENTS
 * [INTRODUCTION](#introduction)
 * [Technologies](#technologies)
-* [MODEL DESIGN](#model design)
-* [DATA & PRE PROCESSING](#data & pre processing)
-* [Implementation](#implementation)
-* [Results](#results)
+* [MODEL-DESIGN](#model-design)
+* [ARCHITECTURE](#architecture)
+* [CODE](#code)
+* [DATA-PRE_PROCESSING](#data-pre_processing)
+* [EVALUATION-RESULTS](#evaluation-results)
 
 ## INTRODUCTION 
 The concept of image captioning is novel problem which deals with cognition of image processing, language modelling and recurrent neural networks. Ability to generate descriptions for image has a myriad number of applications across the industry. The social media platforms have enormous amount of need for these kinds of applications where there is huge surge of images which could help draw insights for business and decision-making purposes. The problem is framed with encoder
@@ -22,7 +23,7 @@ Project is created with:
 * Google - **Colab**
 
 
-## MODEL DESIGN
+## MODEL-DESIGN
 The model has 3 parts for discussion: Encoder, Decoder and Attention. These parts are stitched together for a complete Auto-encoder-decoder model. The encoder model would be a Pre trained CNN nueral network – VGG16, which is build based on ImageNet database. Here we remove the last layer and use the vector representation of the image as an embedding to get an image encoded as a vector. The decoder is built using the RNN network for emitting the required set of words for framing a sentence. Two variants of RNN were involved - LSTM and GRU and different models were built to performing the image captioning task. Attention is generated out of dense nueral network layers to capture the weights of the encoder features and get the focus on that part of the image which needs a caption.
 
 **Encoder:**
@@ -60,7 +61,20 @@ St = RNN(St-1, [e(yt-1),Cv]), RNN could be LSTM/GRU where, e(yt-1) is the previo
 **Decoder:**
 A GRU/LSTM which has different time steps, helping to generate sequence of outputs. This sequence helps in building natural sentences, that could be a translated version of the sentence from the other language or description of an image.
 
-## DATA & PRE PROCESSING
+## ARCHITECTURE
+
+![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
+
+## CODE
+
+We have tried 4 variants in trying different decoder and attention combinations,
+
+1. [Image_Captioning_Decoder_GRU](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Code/Image_Captioning_Decoder_GRU.ipynb)
+2. [Image_Captioning_Decoder_GRU_Global_Visual_Attn](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Code/Image_Captioning_Decoder_GRU_Global_Visual_Attn.ipynb) 
+3. [Image_Captioning_Decoder_LSTM](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Code/Image_Captioning_Decoder_LSTM.ipynb)
+4. [Image_Captioning_Decoder_LSTM_without_visual_attn](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Code/Image_Captioning_Decoder_LSTM_without_visual_attn.ipynb)
+
+## DATA-PRE_PROCESSING
 The data for this project is available at [FLICKR8k](https://academictorrents.com/details/9dea07ba660a722ae1008c4c8afdd303b6f6e53b)
 
 We used Flickr_8k dataset, where we process 8000 images with each image having 5 captions. Hence, we train the image 5 times with different captions to make the model sophisticated to predict for the unseen images. Given the image, we get the image to a standard form of (224*224*3), where the three dimensions includer red, green, and blue. These images are further
@@ -68,25 +82,42 @@ We used Flickr_8k dataset, where we process 8000 images with each image having 5
 processed through the VGG16 pre trained model to get a encoding of the image in (7*7*512) form, where 512 dimensions are developed using the conv layers. There are further passed through a dense layer to get 256 dimensions encoding.
 With captions, we look for the longest caption in the dataset. In our dataset we find 33 worded captions is the longest caption. We have <Start> and <Stop> tags in the captions hence the captions with length less than 33 are padded with zeros. A total of 8329 long vocabulary is built with each word as an index. This is passed through dense layers and the embeddings are retrieved for each word, with dimension of 256.
   
-## EVALUATION & RESULTS
+## EVALUATION-RESULTS
 
 **BLEU Score**
 
 The Bilingual Evaluation Understudy is a score for comparing a candidate translation of text to one or more reference translations. A perfect match results in a score of 1.0 whereas a perfect mismatch results in a score of 0. This score is calculated by comparing the n gram of the candidate translation with ngram of the reference translation to count the number of matches.
 
-
-
-
-# Modeling
-First we build the encoder decoder model, with attention mechanism using GRU RNN. The training was done using Python script available [Here](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Code/Kannada_to_English_Machine_Translation.ipynb)
-
 ![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture9.png)
 
+*BLEU scores consists of:*
+Brevity penalty (BP): it is to see that high score is assigned to the candidate translation which matches the reference translation in length, word choice and word order.
+N: No. of n-grams, we usually use unigram, bigram, 3-gram, 4-gram
+wₙ: Weight for each modified precision, by default N is 4, wₙ is 1/4=0.25
+Pn: Modified precision score captures two aspects of translation, adequacy and fluency: A translation using the same words as in the references counts for adequacy.
+The longer n-gram matches between candidate and reference translation account for fluency
+
+**RESULTS**
+
+Here we see that the attention is very well captured, where the actions, colors and objects are very understood with a good BLEU score of 30+. The LSTM has fairly performed better job in terms of BLEU score, however it was relatively expensive in terms of computation. The attention is well captured here.
+
+LSTM without attention was computational expensive. 40 epochs of training was done against 20 epochs with attention. However, the model without attention underperformed against the one with attention. In our model most of the images were undertrained, only a few images got captioned with one or two words. One of the examples is below. We see that only one word got generated through out without any context involved.
+
+*GRU with local attention*
+
+![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
 ![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
 
+*LSTM with local attention*
 
-## RESULTS
-The deployed model can be accessed from the url from any system to translate kannada sentences to english. 
+![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
+![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
+
+*LSTM without local attention*
+
+![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
+![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
+
 
 ## REFERENCES
 * https://pytorch.org/tutorials/intermediate/seq2seq_translation_tutorial.html
