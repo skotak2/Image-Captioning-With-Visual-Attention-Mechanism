@@ -105,18 +105,17 @@ LSTM without attention was computational expensive. 40 epochs of training was do
 
 *GRU with local attention*
 
-![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
-![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
+![GitHub Logo](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Images/Picture3.jpg)
+
 
 *LSTM with local attention*
 
-![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
-![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
+![GitHub Logo](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Images/Picture4.jpg)
+![GitHub Logo](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Images/Picture5.jpg)
 
 *LSTM without local attention*
 
-![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
-![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture10.png)
+![GitHub Logo](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Images/Picture6.jpg)
 
 
 ## REFERENCES
