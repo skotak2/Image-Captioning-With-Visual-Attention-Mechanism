@@ -89,7 +89,7 @@ With captions, we look for the longest caption in the dataset. In our dataset we
 
 The Bilingual Evaluation Understudy is a score for comparing a candidate translation of text to one or more reference translations. A perfect match results in a score of 1.0 whereas a perfect mismatch results in a score of 0. This score is calculated by comparing the n gram of the candidate translation with ngram of the reference translation to count the number of matches.
 
-![GitHub Logo](https://github.com/skotak2/Seq2Seq-Machine-Translation-Model-Kannada-to-English/blob/main/Images/Picture2.png)
+![GitHub Logo](https://github.com/skotak2/Image-Captioning-With-Visual-Attention-Mechanism/blob/main/Images/Picture2.jpg)
 
 *BLEU scores consists of:*
 Brevity penalty (BP): it is to see that high score is assigned to the candidate translation which matches the reference translation in length, word choice and word order.
